@@ -4,7 +4,7 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: <span>Bio Bank</span>,
   project: {
-    link: 'https://github.com/AndrewThien/Bio-Bank',
+    link: 'https://github.com/AndrewThien',
   },
   chat: {
     link: 'https://www.linkedin.com/in/tri-thien-nguyen/',
