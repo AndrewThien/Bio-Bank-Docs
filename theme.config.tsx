@@ -2,16 +2,16 @@ import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
-  logo: <span>My Project</span>,
+  logo: <span>Bio Bank</span>,
   project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+    link: 'https://github.com/AndrewThien/Bio-Bank',
   },
   chat: {
-    link: 'https://discord.com',
+    link: 'https://www.linkedin.com/in/tri-thien-nguyen/',
   },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  docsRepositoryBase: 'https://github.com/AndrewThien/',
   footer: {
-    text: 'Nextra Docs Template',
+    text: 'Made by Tri Thien Nguyen',
   },
 }
 

@@ -1,15 +1,16 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
   "about": {
     "title": "About",
     "type": "page"
   },
   "contact": {
     "title": "Contact ↗",
-    "type": "page",
-    "href": "https://twitter.com/shuding_",
-    "newWindow": true
-  }
-}
+    "href": "mailto:anretrithien@gmail.com"
+  }, 
+  "index": "Introduction",
+  "architecture": "Application Architecture",
+  "key_component": "Key Components",
+  "execution": "Execution Instructions",
+  "functionality": "Functionalities and Interfaces",
+  "future": "Future"
+} 
