@@ -7,9 +7,6 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/AndrewThien',
   },
-  chat: {
-    link: 'https://www.linkedin.com/in/tri-thien-nguyen/',
-  },
   docsRepositoryBase: 'https://github.com/AndrewThien/Bio-Bank-Docs/tree/main/',
   footer: {
     text: 'Made by Tri Thien Nguyen',

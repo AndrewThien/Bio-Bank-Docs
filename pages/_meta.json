@@ -1,18 +1,8 @@
 {
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
   "index": "Introduction",
   "architecture": "Application Architecture",
+  "functionality": "Functionalities",
   "key_component": "Key Components",
   "execution": "Execution Instructions",
-  "functionality": "Functionalities and Interfaces",
-  "future": "Future",
-  "contact": {
-  "title": "Contact ↗",
-  "type": "page",
-  "newWindow":true,
-  "href": "mailto:anretrithien@gmail.com"
-  }
+  "future": "Future"
 } 

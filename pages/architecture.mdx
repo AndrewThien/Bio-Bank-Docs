@@ -1,3 +1,21 @@
-# Advanced
+# Application Architecture
 
-This is the index page for the Advanced folder!
+## Frontend
+
+The application's frontend is built with React, a popular JavaScript library for building user interfaces. It uses libraries such as react-query for data fetching and state management, lucide-react for icons, and react-hot-toast for displaying toast notifications. The frontend is also styled with Tailwind CSS, a utility-first CSS framework.
+
+## Backend
+
+The backend is a serverless API built with Next.js, a React framework that includes server-side rendering and TypeScript support. The API in this project's stage includes endpoints for adding, viewing samples and collections of the bio bank.
+
+## Database
+
+The application uses Neon database to store data about samples and collections. [Neon](https://neon.tech/) is a serverless open-source alternative to AWS Aurora Postgres. It separates storage and compute and substitutes the PostgreSQL storage layer by redistributing data across a cluster of nodes.
+
+## Deployment
+
+The application is deployed on Vercel, which provides serverless deployment for Next.js applications.
+
+## Version Control 
+
+The project's codebase is managed by Git on the local machine and stored on GitHub for showcasing and collaboration.
