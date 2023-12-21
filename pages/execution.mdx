@@ -1,0 +1,62 @@
+# Execution Instruction
+
+## Prerequisites
+
+Before you can install and execute the `Bio Bank` project, you need to have the following software installed on your computer:
+
+- [Node.js](https://nodejs.org/en/download/)
+- [npm](https://www.npmjs.com/get-npm) (comes with Node.js)
+- [Git](https://git-scm.com/downloads)
+
+## Installation
+
+1. Clone the `bio-bank` repository from GitHub:
+
+```bash
+git clone https://github.com/AndrewThien/Bio-Bank.git
+```
+
+2. Navigate to the biobank directory:
+
+```bash
+cd bio-bank
+```
+
+3. Install the project dependencies:
+
+```bash
+npm install
+```
+
+You also may need to create a `.env` file on the root folder, then add
+
+```bash
+DATABASE_URL=postgresql://nguyentrithien123:Hqz0da2XSGUY@ep-royal-voice-06161069.us-east-2.aws.neon.tech/BioBank?sslmode=require
+```
+This will ensure the Neon Database is loaded successfully.
+
+4. Execution:
+
+ - Start the development server:
+
+```bash
+npm run dev
+```
+
+ - Open your web browser and navigate to http://localhost:3000.
+
+You should now see the Bio Bank application running.
+
+5. Scripts:
+The Bio Bank project includes the following npm scripts:
+
+- `dev`: Starts the development server.
+- `build`: Builds the application for production.
+- `start`: Starts the production server.
+- `lint`: Lints the code.
+
+You can run these scripts with `npm run <script>`, where `<script>` is the name of the script.
+
+6. Live demo:
+
+Please follow this [link](https://bio-bank-andrew.vercel.app/) to try the project's live demo, hosted on Vercel.

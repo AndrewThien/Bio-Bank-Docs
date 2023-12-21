@@ -1,0 +1,79 @@
+# [AddSample Component](https://github.com/AndrewThien/Bio-Bank/blob/master/src/components/AddSample.tsx)
+
+The `AddSample` component is a React functional component used to add a new sample data to the current, selected collection.
+
+## Usage
+
+```tsx
+<AddSample collection_id={1} />
+```
+
+## Props
+
+`collection_id` (number): The ID of the selected collection to which the sample will be added.
+
+## Functionality
+
+The component maintains its own state for the `donorCount`, `materialType`, and `lastUpdated` fields of the new sample. These states are updated whenever the user types into the corresponding input fields.
+
+When the form is submitted, the component sends a POST request to the `/api/add_sample` endpoint with the `collection_id`, `donorCount`, `materialType`, and `lastUpdated` as the request body. The request is made using the `react-query` library's `useMutation` hook.
+
+If the request is successful, the component invalidates the 'samples' query in the `react-query` cache to ensure that the newly added sample is included and seen when the samples data is fetched next time. A success toast notification is also displayed.
+
+If the request fails, an error toast notification is displayed.
+
+After the form is submitted, whether the request is successful or not, the input fields are cleared
+
+#### POST `/api/add_sample` endpoint
+
+```tsx
+
+import { db } from '@/lib/db';
+import { samples } from '@/lib/db/schema';
+import { NextResponse } from 'next/server';
+
+export const runtime = 'edge';
+
+export const POST = async (req: Request) => {
+  try {
+    const { collection_id, donor_count, material_type, last_updated } = await req.json();
+    // Insert the values into the "collection" table
+    await db.insert(samples).values({
+      collection_id: collection_id,
+      donor_count: donor_count,
+      material_type: material_type,
+      last_updated: last_updated,
+    });
+
+    return NextResponse.json({ message: 'Sample Data inserted successfully.' });
+  } catch (error: any) {
+    console.error('Error inserting data:', error);
+    return NextResponse.json(
+      { error: 'Error inserting sample data.'},
+      { status: 500 }
+    );
+  }
+};
+
+```
+The endpoint is implemented as a `POST` function in the `route.ts` file. The function uses the `db` object from the `@/lib/db` module to insert the sample data into the `samples` table in the Neon database. Entry's `id` value will be automatically handled by Neon database.
+
+The function uses the NextResponse.json method from the next/server module to return the response. If the sample is added successfully, the response includes a success message. If there's an error, the response includes an error message and a status code of 500.
+
+## Structure
+
+The component returns a form with three input fields for the `donorCount`, `materialType`, and `lastUpdated` of the new sample, and a submit button. The form is laid out in a table for alignment.
+
+## Styles
+
+The component uses Tailwind CSS for styling. The submit button uses the `Button` component from the `@/components/ui/button` module, and includes a plus circle icon from the `lucide-react` library.
+
+## Dependencies
+
+The component depends on the following libraries:
+
+- `react` for building the component
+- `react-query` for making the POST request and managing the cache
+- `react-hot-toast` for displaying toast notifications
+- `lucide-react` for the plus circle icon
+- `@/components/ui/button` for the submit button styling

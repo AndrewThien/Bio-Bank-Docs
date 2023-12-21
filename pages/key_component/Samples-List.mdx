@@ -1,3 +1,73 @@
-# Satori
+# [SampleList Component](https://github.com/AndrewThien/Bio-Bank/blob/master/src/components/SamplesList.tsx)
 
-Satori (悟り) is a Japanese Buddhist term for awakening, "comprehension; understanding".
+The `SamplesList` component is a React functional component used to display a list of samples from a specific selected collection in the system.
+
+## Usage
+
+```tsx
+<SamplesList collection_id={1} />
+```
+
+## Props
+
+`collection_id` (number): The ID of the selected collection from which the samples will be fetched.
+
+## Functionality
+
+The component uses the react-query library's useQuery hook to fetch the samples from the /api/samples endpoint. The collection_id prop is sent as the request body.
+
+The fetched samples are displayed in a table. Each row in the table corresponds to a sample and displays the sample's id, collection_id, donor_count, material_type, and last_updated fields.
+
+If no samples are fetched, a message saying "No Samples Record Found" is displayed.
+
+#### POST `/api/sample` endpoint
+
+```tsx
+
+import { db } from "@/lib/db";
+import { samples } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
+import { NextResponse } from "next/server";
+
+export const runtime = "edge";
+
+export const POST = async (req: Request) => {
+  try {
+    const { collection_id }  = await req.json();
+    const _samples = await db
+      .select()
+      .from(samples)
+      .where(eq(samples.collection_id, collection_id));
+
+    return NextResponse.json(_samples);
+  } catch (error: any) {
+    console.error(error, "Fetching samples is going wrong");
+    NextResponse.json(
+      {error: "internal server error"},
+      {status: 500});
+  }
+};
+
+```
+The endpoint is implemented as a `POST` function in the `route.ts` file. The function uses the `db` object from the `@/lib/db` module, and `eq` (equal) operator from the `drizzle-orm` module (which is in charge of managing the database) to fetch the sample data from the `samples` table in the database, based on the matching the `collection_id` value of samples and the passed `collection_id` in the request.
+
+The function uses the NextResponse.json method from the next/server module to return the response. If the sample is added successfully, the response includes a success message. If there's an error, the response includes an error message and a status code of 500.
+
+## Structure
+
+The component returns a `div` element that contains either a table of samples or a message saying "No Samples Record Found", depending on whether any samples are fetched.
+
+The table has a row for each sample, and each row has a cell for each field of the sample.
+
+## Styles
+
+The component uses Tailwind CSS for styling. The table uses the `table` class from the  `@/app/table.module.css` module.
+
+## Dependencies
+
+The component depends on the following libraries:
+
+- `react` for building the component
+- `react-query` for fetching the samples
+- `axios` for making the HTTP request to the `/api/samples` endpoint
+- `@/app/table.module.css` for the table styles
