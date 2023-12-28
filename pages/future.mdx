@@ -1,5 +1,29 @@
-# Usage
+# Future Potential Extensions to Improve the Project
 
-## Usage 1
+Below are some enhancements that could be made to improve the Bio Bank in the future.
 
-## Usage 2
+## User Access
+
+To allow more collaborators to contribute to the Bio Bank while keeping the data secure, managing user access is crucial.
+
+To implement this feature, [Clerk](https://clerk.com/) can be used. This authentication application can be easily integrated into the project through APIs and React hooks. It also offers very useful features for managing users, such as [Organizations](https://clerk.com/docs/organizations/overview), assigning [Roles and Permissions](https://clerk.com/docs/organizations/roles-permissions), and Restrictions (such as [Allowlist](https://clerk.com/docs/authentication/configuration/restrictions#allowlist) or [Blocklist](https://clerk.com/docs/authentication/configuration/restrictions#blocklist)).
+
+These Clerk features will make the application more secure and effective in terms of user management and recording the history of activities on the Bio Bank.
+
+Alternatively, access using a password can also be considered. In order to use the application, users would need a password. This way, users don't need their email to log in. A live demo of this idea can be found [here](https://bio-bank-git-add-login-function-tri-thien-nguyens-projects.vercel.app/).
+
+## More Actions to Manage Data
+
+A comprehensive data management application should have features like deleting and updating data, as well as recording data change history or 'search and sort' functions.
+
+I plan to add a 'Delete' function (represented by a bin icon) and an 'Edit' function (represented by a pencil icon) next to each collection and each sample record on the Bio Bank. When users click these, they will be able to delete or update information about a collection or sample in the bio bank. A warning confirmation and a UI notification will also be implemented to enhance the user experience.
+
+In terms of logging change history, actions of creating, adding, and updating data for collections and samples will be recorded with the actor's name, date, and time of the action. In addition, the deleted records will be moved to a 'Bin' section with associated information about the date and time of deletion and the actor's name.
+
+## Analytical Information
+
+Finally, I believe it would be helpful if the application provided some analytical information about samples and collections.
+
+For example, to keep track of the number of samples, users can click the sample's material type, then the total of the sample's donor count will be calculated, and a bar chart, created using the `chart.js` library, showing how this sample is allocated among collections in the bio bank will be displayed.
+
+Or, there will be an 'Analytical Information' link in the application which enables users to see and compare how many donor counts each collection holds in a bar or pie chart.
