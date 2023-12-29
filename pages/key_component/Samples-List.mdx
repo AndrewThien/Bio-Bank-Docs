@@ -14,7 +14,7 @@ The `SamplesList` component is a React functional component used to display a li
 
 ## Functionality
 
-The component uses the react-query library's useQuery hook to fetch the samples from the /api/samples endpoint. The collection_id prop is sent as the request body.
+The component uses the react-query library's useQuery hook to fetch the samples from the /api/samples endpoint. This component also used `axios`, a JavaScript library for making HTTP requests from a web browser, to make the process of fetching data easier. The collection_id prop is sent as the request body.
 
 The fetched samples are displayed in a table. Each row in the table corresponds to a sample and displays the sample's id, collection_id, donor_count, material_type, and last_updated fields.
 
