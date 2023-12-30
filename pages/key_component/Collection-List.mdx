@@ -1,0 +1,89 @@
+# [CollectionList Component](https://github.com/AndrewThien/Bio-Bank/blob/master/src/components/CollectionList.tsx)
+
+The `CollectionList` component is a React component that fetches and displays a list of collections from a server. It's designed to be used in a Next.js application and uses the `react-query` and `axios` library for data fetching.
+
+## Usage
+
+```tsx
+<CollectionList collection_id={1} onLoading={handleLoadingChange} />
+```
+
+## Props
+
+The `CollectionList` component accepts the following props:
+
+- `collection_id`: A number that represents the ID of the collection to fetch. If `collection_id` is `-1`, the component fetches all collections.
+
+- `onLoading`: A function that's called with the loading state of the data fetch. It's called with `true` when the data is loading and `false` when the data has loaded.
+
+## Data Fetching
+
+The `CollectionList` component uses the `useQuery` hook from `react-query` to fetch data from the `/api/collections` endpoint. It sends a POST request with `collection_id` in the request body.
+
+If the data fetch is successful, onLoading is called with `false`. If the data fetch fails, `onLoading` is called with `true` and an error toast is displayed.
+
+#### POST `/api/collection` endpoint
+
+```tsx
+
+import { db } from "@/lib/db";
+import { collections } from "@/lib/db/schema";
+import { NextResponse } from "next/server";
+import { eq } from "drizzle-orm";
+
+export const runtime = "edge";
+
+export const POST = async (req: Request) => {
+
+  try {
+    const {collection_id} = await req.json();
+    // declare the returned collection
+    let _collections;
+    // Based on the passed value of collection id to select all or one collection
+    if (collection_id === -1) {
+      _collections = await db
+      .select()
+      .from(collections);
+    } else {
+      _collections = await db
+      .select()
+      .from(collections)
+      .where(eq(collections.id, collection_id));
+    }
+    return NextResponse.json(_collections);
+  } catch (error: any) {
+    console.log(error, "Fetching collections is going wrong")
+    return NextResponse.json({error: "Fetching collections is going wrong"}, {status: 500}); 
+  }
+}
+
+```
+This API endpoint is designed to fetch and return a list of collections from a database. It's a POST endpoint that accepts a JSON body with a `collection_id` property.
+
+The request to this endpoint should be a POST request with a JSON body. The JSON body should have a `collection_id` property, which is a number that represents the ID of the collection to fetch.
+
+If `collection_id` is `-1`, the endpoint fetches all collections. Otherwise, it fetches the collection with the provided `collection_id`.
+
+## Rendering
+
+While the data is loading, the `CollectionList` component renders a `LoadingPage` component.
+
+Once the data has loaded, the `CollectionList` component renders a table with the collection data. The table has columns for ID, collection title, associated disease, and creation date.
+
+If `collection_id` is `-1`, the collection title in each row is a link to the manage page for that collection. Otherwise, the collection title is just text.
+
+## Styles
+
+The `CollectionList` component uses styles from `table.module.css` for the table. The other styles are utility classes from Tailwind CSS.
+
+## Dependencies
+
+The component depends on the following libraries:
+
+- `react` for building the component
+- `react-query` for fetching the samples
+- `axios` for making the HTTP request to the `/api/samples` endpoint
+- `@/app/table.module.css` for the table styles
+- `@/components/ui/button` for rendering buttons
+- `next/link` for rendering links
+- `react-hot-toast` for displaying toasts
